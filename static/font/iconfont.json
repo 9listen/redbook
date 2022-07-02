@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "739275",
+      "name": "android",
+      "font_class": "android",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "1005788",
+      "name": "苹果",
+      "font_class": "changyonglogo35",
+      "unicode": "e71c",
+      "unicode_decimal": 59164
+    },
+    {
       "icon_id": "4437603",
       "name": "下箭头",
       "font_class": "xiajiantou",

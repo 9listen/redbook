@@ -1,19 +1,24 @@
 <template>
   <div id="app">
     <Header />
-    <Footer />
+    <router-view></router-view>
+    <RedFooter />
   </div>
 </template>
 
 <script>
 
 import Header from '@/components/header.vue'
-import Footer from '@/components/footer.vue'
+import RedFooter from '@/components/redfooter.vue'
 export default {
   name: 'App',
-  components: { Header, Footer }
+  components: { Header, RedFooter }
 }
 </script>
 
-<style>
+<style lang="less">
+  * {
+    margin: 0;
+    padding: 0;
+  }
 </style>
