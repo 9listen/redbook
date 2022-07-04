@@ -57,11 +57,12 @@ export default {
 
 <style lang="less" scoped>
   .footer {
+    // position: relative;
     position: fixed;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.02);
     bottom: 0px;
-    padding: 0px 180px 30px;
+    padding: 20px 180px 30px;
     white-space: nowrap;
     cursor: pointer;
     .protocol {

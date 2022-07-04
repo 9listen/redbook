@@ -1,53 +1,61 @@
 <template>
-  <div class="home-container">
-    <div class="bg-video">
-      <video
-        type="video/mp4"
-        src="../../static/images/bg-video.mp4"
-        autoplay
-        muted
-        loop
-      ></video>
-    </div>
-    <div class="content">
-      <div class="middle">
-        <div class="middle-wrapper">
-          <div class="phone">
-            <div class="mp">
-              <video
-                class="two-video"
-                type="video/mp4"
-                src="../../static/images/new5.27.mp4"
-                autoplay
-                muted
-                loop
-              ></video>
-            </div>
-            <div class="bg-phone"></div>
-          </div>
-          <div class="mark-right">
-            <div class="redlogo"></div>
-            <h2 class="mark-life">标记我的生活</h2>
-            <div class="ewm">
-              <div class="ios">
-                <i class="iconfont icon-changyonglogo35"></i>
-                <span class="iosb">ios版</span>
+  <div>
+    <Header />
+    <div class="home-container">
+      <div class="bg-video">
+        <video
+          type="video/mp4"
+          src="../../static/images/bg-video.mp4"
+          autoplay
+          muted
+          loop
+        ></video>
+      </div>
+      <div class="content">
+        <div class="middle">
+          <div class="middle-wrapper">
+            <div class="phone">
+              <div class="mp">
+                <video
+                  class="two-video"
+                  type="video/mp4"
+                  src="../../static/images/new5.27.mp4"
+                  autoplay
+                  muted
+                  loop
+                ></video>
               </div>
-              <div class="android">
-                <i class="iconfont icon-android"></i>
-                <span>Android版</span>
+              <div class="bg-phone"></div>
+            </div>
+            <div class="mark-right">
+              <div class="redlogo"></div>
+              <h2 class="mark-life">标记我的生活</h2>
+              <div class="ewm">
+                <div class="ios">
+                  <i class="iconfont icon-changyonglogo35"></i>
+                  <span class="iosb">ios版</span>
+                </div>
+                <div class="android">
+                  <i class="iconfont icon-android"></i>
+                  <span>Android版</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <RedFooter />
   </div>
 </template>
 
 <script>
+
+import Header from '@/components/header.vue'
+import RedFooter from '@/components/redfooter.vue'
 export default {
-  name: 'aHome'
+  name: 'aHome',
+  components: { Header, RedFooter },
 }
 </script>
 

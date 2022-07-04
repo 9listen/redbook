@@ -35,6 +35,7 @@ export default {
 <style lang="less" scoped>
   .header {
     position: fixed;
+    // position: relative;
     width: 100%;
     height: 106px;
     top: 0;

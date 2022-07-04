@@ -1,18 +1,35 @@
 <template>
   <div id="app">
-    <Header />
-    <router-view></router-view>
-    <RedFooter />
+    <div class="contain">
+      <!-- <waterfall :imagelists="imagelists" :clos="6" /> -->
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 
-import Header from '@/components/header.vue'
-import RedFooter from '@/components/redfooter.vue'
+// import waterfall from '@/components/waterfall.vue'
 export default {
   name: 'App',
-  components: { Header, RedFooter }
+  data () {
+    return {
+      imagelists: [
+        [
+          {
+            url: require('../static/images/avatar.png')
+          },
+          {},
+          {},
+          {},
+        ],
+        [],
+        [],
+        [],
+        [],
+      ]
+    }
+  }
 }
 </script>
 
