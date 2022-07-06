@@ -16,7 +16,7 @@
           <div class="v-upload">视频上传</div>
           <a href="##">创作者服务</a><i class="iconfont icon-xiajiantou"></i>
         </li>
-        <li><a href="##">新闻中心</a></li>
+        <li><router-link to="/news">新闻中心</router-link></li>
         <li><a href="##">关于我们</a></li>
         <li><a href="##">社会责任</a></li>
         <li><a href="##">加入我们</a></li>
@@ -40,7 +40,7 @@ export default {
     height: 106px;
     top: 0;
     font-weight: 500;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.02);
     z-index: 100;
     box-sizing: border-box;
     display: flex;

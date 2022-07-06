@@ -25,7 +25,7 @@
 export default {
   name: 'TiWaterfall',
   props: {
-    imagelists: {
+    imagelists: {//图片数据
       type: Array,
       default: () => [],
     },
@@ -58,11 +58,11 @@ export default {
     }
   },
   methods: {
-    imageInit (imagelists) {
+    imageInit (imagelists) {//这是考虑图片大小变化比例
       imagelists.forEach((item) => {
         item.top = 0
         item.left = 0
-        const loadImage = new Image()//创建新的图片元素  // old
+        const loadImage = new Image()//创建图片元素  // old
         loadImage.src = item.url
         loadImage.onload = () => {//🌺
           const imgData = {} // 新图片

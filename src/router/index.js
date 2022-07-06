@@ -5,17 +5,23 @@ Vue.use(VueRouter)
 // 引入组件
 import Home from '@/views/home.vue'
 import Community from '@/views/community.vue'
+import News from '@/views/news.vue'
 export default new VueRouter({
     routes: [
         {
             path: '/home',
-            name:'home',
+            name: 'home',
             component: Home,
         },
         {
             path: '/community',
             name: 'community',
-            component:Community,
+            component: Community,
+        },
+        {
+            path: '/news',
+            name: 'news',
+            component: News,
         }
     ]
 })
