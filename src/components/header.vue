@@ -17,7 +17,7 @@
           <a href="##">创作者服务</a><i class="iconfont icon-xiajiantou"></i>
         </li>
         <li><router-link to="/news">新闻中心</router-link></li>
-        <li><a href="##">关于我们</a></li>
+        <li><router-link to="/aboutme">关于我们</router-link></li>
         <li><a href="##">社会责任</a></li>
         <li><a href="##">加入我们</a></li>
         <li><a href="##">中文</a><i class="iconfont icon-xiajiantou"></i></li>

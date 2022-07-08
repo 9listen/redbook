@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 import Home from '@/views/home.vue'
 import Community from '@/views/community.vue'
 import News from '@/views/news.vue'
+import AboutMe from '@/views/aboutme.vue'
 export default new VueRouter({
     routes: [
         {
@@ -22,6 +23,11 @@ export default new VueRouter({
             path: '/news',
             name: 'news',
             component: News,
+        },
+        {
+            path: '/aboutme',
+            name: 'aboutme',
+            component: AboutMe,
         }
     ]
 })
