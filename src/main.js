@@ -4,8 +4,13 @@ import App from './App.vue'
 import router from '@/router'
 // 引入图标
 import './../static/font/iconfont.css'
-// 
+// 引入虚拟数据
 import './mock/mock.js'
+// 引入UI组件库
+import ElementUI from 'element-ui'
+// 引入ui全部样式
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 // Vue.use(VueRouter)
 Vue.config.productionTip = false
 

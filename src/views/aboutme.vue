@@ -73,19 +73,19 @@
             <div class="address">
               <span
                 class="office"
-                :class="[{ current: this.active === 'shanghai' }]"
+                :class="[{ current: active === 'shanghai' }]"
                 @click="getActive('shanghai')"
                 >上海总部</span
               >
               <span
                 class="office"
-                :class="[{ current: this.active === 'beijin' }]"
+                :class="[{ current: active === 'beijin' }]"
                 @click="getActive('beijin')"
                 >北京</span
               >
               <span
                 class="office no-right"
-                :class="[{ current: this.active === 'wuhan' }]"
+                :class="[{ current: active === 'wuhan' }]"
                 @click="getActive('wuhan')"
                 >武汉</span
               >
@@ -93,7 +93,7 @@
             <!-- 每份图片 -->
             <div class="address-img">
               <div
-                class="img-wrapper img-current"
+                class="img-wrapper"
                 v-for="(tab, index) in renderlist"
                 :key="index"
               >
@@ -103,8 +103,45 @@
           </div>
         </div>
         <!-- 🌈小红书发展史-->
-        <div class="hot redbook">
+        <div class="hot redbook history">
           <div class="hot-title">小红书发展史</div>
+          <!-- 样式和公司环境一样 -->
+          <div class="time">
+            <!-- 时间 -->
+            <div class="timeline">
+              <div class="left-arrow" @click="goPre">&lt;</div>
+              <div
+                :class="['time-detail', { current: curyear === 0 }]"
+                @click="getCuryear(0)"
+              >
+                {{ timeline }}
+              </div>
+              <div
+                :class="['time-detail', { current: curyear === 1 }]"
+                @click="getCuryear(1)"
+              >
+                {{ timeline + 1 }}
+              </div>
+              <div
+                :class="['time-detail', { current: curyear === 2 }]"
+                @click="getCuryear(2)"
+              >
+                {{ timeline + 2 }}
+              </div>
+              <div
+                :class="['time-detail', { current: curyear === 3 }]"
+                @click="getCuryear(3)"
+              >
+                {{ timeline + 3 }}
+              </div>
+              <div class="right-arrow" @click="goNext">&gt;</div>
+            </div>
+            <!-- 每份时间对应内容 -->
+            <div class="time-con">
+              <div class="time-wrapper"></div>
+            </div>
+          </div>
+          <!-- element-ui引入tab样式 -->
         </div>
         <!--🌈 合作邮箱 -->
         <div class="hot story">
@@ -197,17 +234,47 @@ export default {
 
       },
       active: 'shanghai',
+      // 小红书发展史
+      activeName: 'first',
+      timeline: 2013,
+      curyear: 0,
     }
   },
   methods: {
     getActive (value) {
-      console.log('🔥log=>aboutme=>193:value:%o', value)
+      //console.log('🔥log=>aboutme=>193:value:%o', value)
       if (value)
         this.active = value
-    }
+    },
+    getCuryear (value) {
+      if (value || value === 0)//判断第几项，因为0系统会默认false，所以单独写出来
+        this.curyear = value
+    },
+    // 1.点击箭头时间timeline会加减， 2013<timeline<2019
+    // 2.点击箭头当前项curyear的类名current会变（背景颜色和字色）
+    goPre () {
+      this.timeline--;
+      if (this.timeline <= 2013) {
+        // eslint-disable-next-line no-debugger
+        // debugger
+        if (this.curyear !== 0) {
+          this.curyear--;
+        }
+        this.timeline = 2013
+      }
+    },
+    goNext () {
+      this.timeline++;
+      if (this.timeline > 2019 - 3) {
+        if (this.curyear !== 4) {
+          this.curyear++;
+        }
+        this.timeline = 2019 - 3
+      }
+    },
   },
   computed: {
-    renderlist () {
+    renderlist () {//🌸7.8利用计算属性动态取tablist对象里面的三个数组
       return this.tablist[this.active]
     }
   }
@@ -250,7 +317,6 @@ export default {
     }
     .about-body {
       // &:not(:last-child){
-
       // }
       //   background-color: rgb(227, 229, 207);
       padding: 100px 0 0;
@@ -425,19 +491,23 @@ export default {
             }
           }
         }
-        // 公司环境
-        .company {
+        // 公司环境+小红书发展历史
+        .company,
+        .time {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          .address {
+          .address,
+          .timeline {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 50px;
             cursor: pointer;
-            .office {
+            // 具体时间
+            .office,
+            .time-detail {
               display: inline-block;
               width: 216px;
               height: 76px;
@@ -447,10 +517,10 @@ export default {
               border-right: none;
               color: #666;
               //   font-size: 16px;
-              &:hover {
-                color: #ff2441;
-                background-color: #e6e6e6;
-              }
+            }
+            .office:hover {
+              color: #ff2441;
+              background-color: #e6e6e6;
             }
             .current {
               color: #ff2441;
@@ -459,7 +529,20 @@ export default {
             .no-right {
               border-right: 1px solid #ccc;
             }
+            // 左右箭头
+            .left-arrow,
+            .right-arrow {
+              border: 1px solid #ccc;
+              width: 70px;
+              height: 76px;
+              color: #000;
+              line-height: 76px;
+              text-align: center;
+              font-size: 24px;
+              color: #666;
+            }
           }
+          //   每份图片
           .address-img {
             display: flex;
             justify-content: center;
@@ -471,23 +554,25 @@ export default {
                 height: 298px;
               }
             }
-            // 点击谁谁出现
-            .img-current {
-              display: block;
-            }
           }
         }
+        // 小红书发展史
       }
       // 什么是小红书
       .redbook {
         margin-top: 0;
         margin-bottom: 75px;
       }
+      // 小红书发展史
+      .history {
+        padding: 100px 0;
+        margin-bottom: 0;
+      }
       // 有背景颜色
       .story {
         margin-top: 100px;
         background-color: #fbfbfb;
-        margin-bottom: 100px;
+        padding-bottom: 100px;
         .story-title {
           margin-top: 100px;
         }
