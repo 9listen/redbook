@@ -20,11 +20,46 @@
       "unicode_decimal": 59164
     },
     {
+      "icon_id": "1132456",
+      "name": "服务内容",
+      "font_class": "fuwuneirong",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "2742669",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
       "icon_id": "4437603",
       "name": "下箭头",
       "font_class": "xiajiantou",
       "unicode": "e615",
       "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "11372717",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e8bb",
+      "unicode_decimal": 59579
+    },
+    {
+      "icon_id": "19818659",
+      "name": "公司简介",
+      "font_class": "gongsijianjie",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "28200288",
+      "name": "协议",
+      "font_class": "xieyi",
+      "unicode": "e608",
+      "unicode_decimal": 58888
     }
   ]
 }

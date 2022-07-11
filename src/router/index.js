@@ -7,6 +7,8 @@ import Home from '@/views/home.vue'
 import Community from '@/views/community.vue'
 import News from '@/views/news.vue'
 import AboutMe from '@/views/aboutme.vue'
+import Social from '@/views/social.vue'
+import Joinus from '@/views/joinus.vue'
 export default new VueRouter({
     routes: [
         {
@@ -28,6 +30,16 @@ export default new VueRouter({
             path: '/aboutme',
             name: 'aboutme',
             component: AboutMe,
-        }
+        },
+        {
+            path: '/social',
+            name: 'social',
+            component: Social,
+        },
+        {
+            path: '/joinus',
+            name: 'joinus',
+            component: Joinus,
+        },
     ]
 })
