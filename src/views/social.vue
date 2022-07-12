@@ -1,11 +1,13 @@
 <template>
   <div>
-    <Header />
+    <Header active="social" />
     <div class="social">
-      <div class="social-center">
-        <div class="bg-cover"></div>
-        <h1 class="social-title">社会责任</h1>
-      </div>
+      <!-- 社会责任公共标题和图片部分 -->
+      <CommonTitle
+        :title="title"
+        :banner="banner"
+        bgcolor="rgba(51,51,51,0.3)"
+      />
       <div class="social-body">
         <div class="social-content">
           <!-- 每一个热点 -->
@@ -23,16 +25,21 @@
         </div>
       </div>
     </div>
+    <RedFooter />
   </div>
 </template>
 
 <script>
 import Header from '@/components/header.vue'
+import RedFooter from '@/components/redfooter.vue'
+import CommonTitle from '@/components/commontitle/commontitle.vue'
 export default {
   name: 'aSocial',
-  components: { Header, },
+  components: { Header, CommonTitle, RedFooter },
   data () {
     return {
+      title: '社会责任',
+      banner: require('../../static/images/social01.jpeg'),
       items: [
         {
           src: require('../../static/images/social02.png'),
@@ -87,33 +94,8 @@ export default {
     height: 100%;
     box-sizing: border-box;
     // background-color: rgba(227, 176, 176, 0.2);
-    .social-center {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      background-image: url("../../static/images/social01.jpeg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      .bg-cover {
-        background-color: rgba(0, 0, 0, 0.2);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .social-title {
-        // position: absolute;
-        display: inline-block;
-        font-size: 48px;
-        color: #fff;
-        z-index: 1;
-      }
-    }
+    //  commontitle组件里面的图片和标题部分插入这里
+    // 下边部分
     .social-body {
       background-color: #fafafa;
       padding: 100px 0 50px 0;

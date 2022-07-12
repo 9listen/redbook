@@ -1,11 +1,13 @@
 <template>
   <div>
-    <Header />
+    <Header active="news" />
     <div class="news">
-      <div class="news-center">
-        <div class="bg-cover"></div>
-        <h1 class="news-title">新闻中心</h1>
-      </div>
+      <!-- 新闻中心标题部分 -->
+      <CommonTitle
+        :title="title"
+        :banner="banner"
+        bgcolor="rgba(51, 51, 51, 0.3)"
+      />
       <div class="news-body">
         <!-- 🌈热门报道 -->
         <div class="hot">
@@ -120,19 +122,22 @@
         </div>
       </div>
     </div>
-    <!-- <RedFooter /> -->
+    <RedFooter />
   </div>
 </template>
 
 <script>
 import Header from '@/components/header.vue'
-// import RedFooter from '@/components/redfooter.vue'
+import RedFooter from '@/components/redfooter.vue'
+import CommonTitle from '@/components/commontitle/commontitle.vue'
 import { reqGetNews } from '@/apis/index.js'
 export default {
   name: 'aNews',
-  components: { Header, },
+  components: { Header, CommonTitle, RedFooter },
   data () {
     return {
+      title: '新闻中心',
+      banner: require('../../static/images/news.png'),
       items: [],
       datalists: [
         { index: 0, header: '第一期:', title: '有音乐，生活才有style', content: '小红薯们合奏一曲在小红书上被pick了1200万次的单曲 I Remember，实力诠释什么叫有音乐，生活才有style' },
@@ -174,33 +179,7 @@ export default {
     height: 100%;
     box-sizing: border-box;
     // background-color: rgba(227, 176, 176, 0.2);
-    .news-center {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      background-image: url("../../static/images/news.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      .bg-cover {
-        background-color: rgba(0, 0, 0, 0.2);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .news-title {
-        // position: absolute;
-        display: inline-block;
-        font-size: 48px;
-        color: #fff;
-        z-index: 1;
-      }
-    }
+    // 插入标题和背景图片部分在组件commontitle里面
     .news-body {
       //   background-color: rgb(227, 229, 207);
       padding: 100px 0 0;

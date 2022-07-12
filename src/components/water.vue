@@ -463,6 +463,18 @@ export default {
               }
             }
           }
+          // 单个笔记hover上去的阴影
+          .note-con:hover::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            margin: 0 0 20px;
+            background-color: rgba(0, 2, 4, 0.2);
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
         }
       }
     }

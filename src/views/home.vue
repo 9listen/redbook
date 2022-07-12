@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <Header active="home" />
     <div class="home-container">
       <div class="bg-video">
         <video
@@ -45,19 +45,24 @@
         </div>
       </div>
     </div>
-    <RedFooter />
+    <RedFooter :isHome="isHome" />
   </div>
 </template>
 
 <script>
-
 import Header from '@/components/header.vue'
 import RedFooter from '@/components/redfooter.vue'
 export default {
   name: 'aHome',
   components: { Header, RedFooter },
+  data () {
+    return {
+      isHome: true,
+    }
+  }
+
 }
-</script>
+</script> 
 
 <style lang="less" scoped>
   .home-container {
@@ -67,29 +72,16 @@ export default {
     right: 0;
     bottom: 0;
     .bg-video {
-      position: absolute;
+      position: relative;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
     }
     .content {
-      position: relative;
-      display: flex;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
       .middle {
         width: 100%;
         height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
         .middle-wrapper {
           display: flex;
           justify-content: center;
@@ -174,7 +166,7 @@ export default {
                 border-radius: 0 0 20px 20px;
               }
               .android::before {
-                right: 1px;
+                right: 0px;
               }
               .ios::after,
               .android::after {

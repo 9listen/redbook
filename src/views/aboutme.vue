@@ -1,11 +1,13 @@
 <template>
   <div>
-    <Header />
+    <Header active="about" />
     <div class="aboutme">
-      <div class="about-center">
-        <div class="bg-cover"></div>
-        <h1 class="about-title">关于我们</h1>
-      </div>
+      <!-- 关于我们标题部分 -->
+      <CommonTitle
+        title="关于我们"
+        :banner="banner"
+        bgcolor="rgba(0,0,0,0.5)"
+      />
       <div class="about-body">
         <!-- 🌈什么是小红书 -->
         <div class="hot redbook">
@@ -225,18 +227,21 @@
         </div>
       </div>
     </div>
-    <!-- <RedFooter /> -->
+    <RedFooter />
   </div>
 </template>
 
 <script>
 import Header from '@/components/header.vue'
-// import RedFooter from '@/components/redfooter.vue'
+import CommonTitle from '@/components/commontitle/commontitle.vue'
+import RedFooter from '@/components/redfooter.vue'
 export default {
   name: 'AboutMe',
-  components: { Header, },
+  components: { Header, CommonTitle, RedFooter },
   data () {
     return {
+      title: '关于我们',
+      banner: require('../../static/images/aboutme.png'),
       wrappers: [
         {
           index: '01',
@@ -391,33 +396,7 @@ export default {
     height: 100%;
     box-sizing: border-box;
     // background-color: rgba(227, 176, 176, 0.2);
-    .about-center {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      background-image: url("../../static/images/aboutme.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      .bg-cover {
-        background-color: rgba(0, 0, 0, 0.2);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .about-title {
-        // position: absolute;
-        display: inline-block;
-        font-size: 48px;
-        color: #fff;
-        z-index: 1;
-      }
-    }
+    // 关于我们的标题和图片在组件commontitle里面
     .about-body {
       // &:not(:last-child){
       // }

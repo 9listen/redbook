@@ -1,23 +1,25 @@
 <template>
   <div>
-    <Header />
+    <Header :isCommunity="isCommunity" active="community" />
     <Water v-if="imglists.length > 0" :imgs="imglists" />
-    <!-- <RedFooter /> -->
+    <RedFooter />
   </div>
 </template>
 
 <script>
 
 import Header from '@/components/header.vue'
-// import RedFooter from '@/components/redfooter.vue'
+import RedFooter from '@/components/redfooter.vue'
 import Water from '@/components/water.vue'
 import { reqGetWaterfall } from '@/apis/index.js'
 export default {
   name: 'aCommunity',
-  components: { Header, Water },
+  components: { Header, Water, RedFooter },
   data () {
     return {
+      isCommunity: true,
       imglists: [],
+
       // 原始测试数据，可以拿着去mock数据使得数据更真实
       //#region
       // imglists: [

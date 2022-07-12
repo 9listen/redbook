@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div :class="['footer', { 'footer-home': isHome }]">
     <div class="protocol">
       <ul class="protocol-four">
         <li>用户协议</li>
@@ -51,17 +51,22 @@
 
 <script>
 export default {
-  name: 'aFooter'
+  name: 'aFooter',
+  props: {
+    isHome: {
+      type: Boolean,
+      default: false,
+    }
+  }
 }
-</script>
+</script> 
 
 <style lang="less" scoped>
   .footer {
-    // position: relative;
-    position: fixed;
+    position: relative;
+    bottom: 0;
+    // position: fixed;
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.02);
-    bottom: 0px;
     padding: 20px 180px 30px;
     white-space: nowrap;
     cursor: pointer;
@@ -92,6 +97,15 @@ export default {
         vertical-align: middle;
         margin-top: -3px;
         margin-left: 5px;
+      }
+    }
+  }
+  // 主页的底部用固定定位，其他页面底部用相对定位才可以
+  .footer-home {
+    position: fixed;
+    .protocol {
+      .protocol-four {
+        color: #fff;
       }
     }
   }
