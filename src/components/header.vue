@@ -24,7 +24,7 @@
           :class="[{ 'nav-active': reallyactive === 'home' }]"
           @click="getActive('home')"
         >
-          <router-link to="/home">首页</router-link>
+          <router-link to="/">首页</router-link>
         </li>
         <li
           :class="[{ 'nav-active': reallyactive === 'community' }]"
@@ -100,7 +100,7 @@ export default {
     },
     active: {
       type: String,
-      default: '999',
+      default: '',
     }
   },
   data () {

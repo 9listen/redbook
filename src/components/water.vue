@@ -9,7 +9,12 @@
             v-for="(columns, index) in imglists"
             :key="index"
           >
-            <div class="note-con" v-for="(column, i) in columns" :key="i">
+            <router-link
+              to="/cdetail"
+              class="note-con"
+              v-for="(column, i) in columns"
+              :key="i"
+            >
               <div class="note">
                 <div class="note-img">
                   <img :src="column.cover" alt="" />
@@ -26,7 +31,7 @@
                   <div class="user-name">{{ column.userinfo.username }}</div>
                 </div>
               </div>
-            </div>
+            </router-link>
             <!-- <div class="note-con">
             <div class="note">
               <div class="note-img">
@@ -408,6 +413,8 @@ export default {
             border-radius: 8px;
             position: relative;
             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+            text-decoration: none;
+            color: #000;
             .note {
               //图片+描述
               width: 100%;

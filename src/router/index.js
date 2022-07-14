@@ -9,10 +9,12 @@ import News from '@/views/news.vue'
 import AboutMe from '@/views/aboutme.vue'
 import Social from '@/views/social.vue'
 import Joinus from '@/views/joinus.vue'
+import Cdetail from '@/views/community/cdetail.vue'
 export default new VueRouter({
+    mode: 'history',
     routes: [
         {
-            path: '/home',
+            path: '/',
             name: 'home',
             component: Home,
         },
@@ -40,6 +42,11 @@ export default new VueRouter({
             path: '/joinus',
             name: 'joinus',
             component: Joinus,
+        },
+        {
+            path: '/cdetail',
+            name: 'cdetail',
+            component: Cdetail,
         },
     ]
 })

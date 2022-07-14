@@ -1,4 +1,5 @@
 <template>
+  <!-- isHome判断的是是否是主页，主页底部的样式和其他页面不一样 -->
   <div :class="['footer', { 'footer-home': isHome }]">
     <div class="protocol">
       <ul class="protocol-four">

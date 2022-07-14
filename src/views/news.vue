@@ -150,10 +150,11 @@ export default {
       timer: null,
     }
   },
+  // 🌈🌈🌈🌈🌈方法1直接调用该函数获取服务器数据，方法2:vuex去获取数据，页面请求的数据较多的时候方便管理
   mounted () {
     reqGetNews().then(res => {
       if (res.status === 200) {
-        this.items = res.data.data
+        this.items = res.data
       }
     });
     // 轮播图

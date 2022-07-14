@@ -22,9 +22,10 @@
             <!-- 🌈三张过度效果的图 -->
             <div class="redbook-container">
               <!-- 每份 -->
+              <!-- 713试着从vuex获取数据吧 -->
               <div
                 class="card-wrapper"
-                v-for="(wrapper, index) in wrappers"
+                v-for="(wrapper, index) in welfareList"
                 :key="index"
               >
                 <div class="card">
@@ -53,7 +54,7 @@
             <div class="redbook-item">
               <div
                 class="every-wrapper"
-                v-for="(data, title) in details"
+                v-for="(data, title) in missionList"
                 :key="title"
               >
                 <div class="detail-wrapper">
@@ -177,7 +178,7 @@
           <div class="local">
             <div
               class="local-three"
-              v-for="(item, index) in locals"
+              v-for="(item, index) in locallist"
               :key="index"
             >
               <div class="head">{{ item.home }}</div>
@@ -235,6 +236,7 @@
 import Header from '@/components/header.vue'
 import CommonTitle from '@/components/commontitle/commontitle.vue'
 import RedFooter from '@/components/redfooter.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'AboutMe',
   components: { Header, CommonTitle, RedFooter },
@@ -242,101 +244,30 @@ export default {
     return {
       title: '关于我们',
       banner: require('../../static/images/aboutme.png'),
-      wrappers: [
-        {
-          index: '01',
-          head: '社区',
-          desc: '小红书社区目前内容覆盖时尚、个护、彩妆、美食、旅行、娱乐、读书、健身、母婴等各个生活方式领域，每天产生超过70亿次的笔记曝光，其中超过95%为UGC内容',
-          src: require('../../static/images/about01.jpeg')
-        },
-        {
-          index: '01',
-          head: '企业号',
-          desc: '小红书企业号部门围绕“企业号”这一核心产品，整合公司从社区营销一直到交易闭环的资源，更好地连接消费者和品牌，帮助品牌在小红书完成一站式闭环营销，提供全链条服务',
-          src: require('../../static/images/about02.jpeg')
-        },
-        {
-          index: '03',
-          head: '福利社',
-          desc: '小红书福利社是小红书的自营电商平台，在小红书福利社，用户可以一键购买来自全世界的优质美妆、时尚、家电、零食商品',
-          src: require('../../static/images/about03.jpeg')
-        },
-      ],
-      details: [
-        {
-          title: '使命',
-          detail: 'Inspire Lives 分享和发现世界的精彩',
-          src: require('../../static/images/about04.png'),
-          line: true,
-        },
-        {
-          title: '愿景',
-          detail: '成为最受用户信任的互联网公司',
-          src: require('../../static/images/about05.png'),
-          line: true,
-        },
-        {
-          title: '企业价值观',
-          detail: '向上、走进用户、开放心态、务实、担当',
-          src: require('../../static/images/about06.png'),
-          line: false,
-        },
-      ],
-      tablist: {
-        shanghai: [
-          { src: require('../../static/images/shanghai01.jpeg') },
-          { src: require('../../static/images/shanghai02.jpeg') },
-          { src: require('../../static/images/shanghai03.jpeg') },
-        ],
-        beijin: [
-          { src: require('../../static/images/bei01.jpeg') },
-          { src: require('../../static/images/bei02.jpeg') },
-          { src: require('../../static/images/bei03.jpeg') },
-        ],
-        wuhan: [
-          { src: require('../../static/images/wu01.jpeg') },
-          { src: require('../../static/images/wu02.jpeg') },
-          { src: require('../../static/images/wu03.jpeg') },
-        ]
+      // 都用mock获取这些数组数据
+      // tablist: {
+      //   shanghai: [
+      //     { src: require('../../static/images/shanghai01.jpeg') },
+      //     { src: require('../../static/images/shanghai02.jpeg') },
+      //     { src: require('../../static/images/shanghai03.jpeg') },
+      //   ],
+      //   beijin: [
+      //     { src: require('../../static/images/bei01.jpeg') },
+      //     { src: require('../../static/images/bei02.jpeg') },
+      //     { src: require('../../static/images/bei03.jpeg') },
+      //   ],
+      //   wuhan: [
+      //     { src: require('../../static/images/wu01.jpeg') },
+      //     { src: require('../../static/images/wu02.jpeg') },
+      //     { src: require('../../static/images/wu03.jpeg') },
+      //   ]
 
-      },
+      // },
       active: 'shanghai',
       // 小红书发展史
       activeName: 'first',
       timeline: 2013,
       curyear: 0,
-      emails: [
-        { name: '美妆', address: 'bd_beauty@xiaohongshu.com' },
-        { name: '家居', address: 'bd_home@xiaohongshu.com' },
-        { name: '母婴', address: 'bd_baby@xiaohongshu.com' },
-        { name: '食品/保健', address: 'bd_food@xiaohongshu.com' },
-        { name: '时尚轻奢', address: 'bd_fashion@xiaohongshu.com' },
-        { name: '家电数码', address: 'bd_appliance@xiaohongshu.com' },
-        { name: '仓储物流', address: 'bd_storage@xiaohongshu.com' },
-        { name: '薯队长', address: 'shuduizhang@xiaohongshu.com' },
-        { name: '人事/招聘', address: 'career@xiaohongshu.com' },
-        { name: '媒体/采访', address: 'media@xiaohongshu.com' },
-        { name: '市场/品牌', address: 'marketing@xiaohongshu.com' },
-        { name: '产品反馈', address: 'app_feedback@xiaohongshu.com' },
-        { name: '社区反馈', address: 'community@xiaohongshu.com' },
-        { name: '客服反馈', address: 'service@xiaohongshu.com' },
-        { name: '明星入驻', address: 'superstar@xiaohongshu.com' },
-        { name: '推广合作', address: 'RED.AD@xiaohongshu.com' },
-        { name: '蒲公英平台', address: 'influencer@xiaohongshu.com' },
-        { name: '品牌号', address: 'brandaccount@xiaohongshu.com' },
-        { name: '广告合作', address: 'red.ad@xiaohongshu.com' },
-      ],
-      locals: [
-        { home: '上海总部', address: '上海市 黄浦区 马当路388号 SOHO复兴广场C座' },
-        { home: '北京', address: '北京市 朝阳区 安定路 中海国际B座18楼' },
-        { home: '武汉', address: '武汉市 光谷大道 现代光谷世贸中心B座10楼' },
-      ],
-      channels: [
-        { src: require('../../static/images/about07.png'), desc: '下载小红书' },
-        { src: require('../../static/images/about09.png'), desc: '关注小红书微博' },
-        { src: require('../../static/images/about10.png'), desc: '关注微信公众号' },
-        { src: require('../../static/images/about11.png'), desc: '关注微信小程序' },
-      ]
     }
   },
   methods: {
@@ -381,10 +312,31 @@ export default {
 
     },
   },
+  mounted () {
+    //获取vuex仓库数据
+    this.$store.dispatch('aboutme/getWelfarelist', 'getWelfarelist');
+    this.$store.dispatch('aboutme/getMissionlist', 'getMissionlist');
+    this.$store.dispatch('aboutme/getTablist', 'getTablist');
+    this.$store.dispatch('aboutme/getEmailslist', 'getEmailslist');
+    this.$store.dispatch('aboutme/getLocallist', 'getLocallist');
+    this.$store.dispatch('aboutme/getChannels', 'getChannels')
+  },
   computed: {
     renderlist () {//🌸7.8利用计算属性动态取tablist对象里面的三个数组
       return this.tablist[this.active]
-    }
+    },
+    // 714 获取vuex仓库数据
+    ...mapState({
+      welfareList: state => state.aboutme.welfareList,
+      missionList: state => state.aboutme.missionList,
+      tablist: state => state.aboutme.tablist,
+      emails: state => state.aboutme.emailslist,
+      // locallist: function (state) {
+      //   return state.aboutme.locallist
+      // }
+      locallist: state => state.aboutme.locallist,
+      channels: state => state.aboutme.channels,
+    })
   }
 }
 </script>

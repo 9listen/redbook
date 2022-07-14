@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    <div class="contain">
-      <!-- <Header /> -->
-      <!--这里 没有header组件的话，刚开始加载会出现加载不出来的情况 -->
-      <router-view></router-view>
-      <!-- <RedFooter /> -->
-    </div>
+    <!-- <Header /> -->
+    <!--这里 没有header组件的话，刚开始加载会出现加载不出来的情况 -->
+    <router-view />
+    <!-- <RedFooter /> -->
   </div>
 </template>
 
 <script>
 
 // import waterfall from '@/components/waterfall.vue'
-
 // import Header from '@/components/header.vue'
 // import RedFooter from '@/components/redfooter.vue'
 export default {
