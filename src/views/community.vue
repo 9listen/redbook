@@ -16,7 +16,7 @@ export default {
   name: 'aCommunity',
   components: { Header, Water, RedFooter },
   data () {
-    return {
+    return { 
       isCommunity: true,
       imglists: [],
 
@@ -37,8 +37,8 @@ export default {
   mounted () {
     reqGetWaterfall().then(res => {
       if (res.status === 200) {
-        this.imglists = res.data.data
-        //axios默认有一层数据，所以这里还要取一层
+        this.imglists = res.data
+        //axios默认有一层数据，拦截器里面处理了
         // {
         //   status: 200
         //   data: {

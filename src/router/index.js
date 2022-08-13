@@ -12,7 +12,7 @@ import Joinus from '@/views/joinus.vue'
 import Cdetail from '@/views/community/cdetail.vue'
 export default new VueRouter({
     mode: 'history',
-    routes: [
+    routes: [ 
         {
             path: '/',
             name: 'home',

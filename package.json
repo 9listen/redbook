@@ -5,10 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "log": "changeloger"
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "changeloger": "^0.0.4",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.9",
     "mockjs": "^1.1.0",
@@ -38,7 +40,8 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "parser": "@babel/eslint-parser",
+      "requireConfigFile": false
     },
     "rules": {}
   },

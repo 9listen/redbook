@@ -55,7 +55,11 @@
           <div class="update-inner">
             <div class="title">招聘动态</div>
             <div class="details">
-              <div class="detail" v-for="(up, index) in uplist" :key="index">
+              <div
+                class="detail"
+                v-for="(up, index) in updatelist"
+                :key="index"
+              >
                 <div class="job">{{ up.activity }}</div>
                 <div class="time">{{ up.time }}</div>
               </div>
@@ -147,28 +151,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'aJoinus',
   data () {
     return {
-      hotlist: [
-        { job: '图形图像编辑&渲染资深工程师', address: '北京市,上海市' },
-        { job: '电商直播主播运营（美妆/美食）', address: '北京市,上海市' },
-        { job: '数据仓库工程师-【大数据部】', address: '北京市,上海市' },
-        { job: '电商-数据分析师', address: '上海市' },
-        { job: '社区信息流推荐算法工程师', address: '北京市,上海市' },
-      ],
-      uplist: [
-        { activity: 'RED OASIS | 小红书造城记', time: '2019-01-22' },
-        { activity: '2018年小红书搞过的大事情', time: '2018-12-30' },
-        { activity: '小红书广告商业化热招ing', time: '2018-11-26' },
-      ],
-      conlist: [
-        { ico: 'icon-gongsijianjie', title: '公司相关', child: ['加入我们', '招商合作', '关于我们'] },
-        { ico: 'icon-fuwuneirong', title: '内容相关', child: ['社区精选', '媒体报道'] },
-        { ico: 'icon-xieyi', title: '协议条款', child: ['注册协议', '隐私协议'] }
-      ]
     }
+  },
+  mounted () {
+    this.$store.dispatch('joinus/getHotlist', 'getHotlist')
+    this.$store.dispatch('joinus/getUpdatelist', 'getUpdatelist')
+    this.$store.dispatch('joinus/getConlist', 'getConlist')
+  },
+  computed: {
+    ...mapState({
+      hotlist: state => state.joinus.hotlist,
+      updatelist: state => state.joinus.updatelist,
+      conlist: state => state.joinus.conlist,
+    })
   }
 }
 </script>

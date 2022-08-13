@@ -94,7 +94,7 @@
 export default {
   name: 'aHeader',
   props: {
-    isCommunity: {
+    isCommunity: { 
       type: Boolean,
       default: false,
     },

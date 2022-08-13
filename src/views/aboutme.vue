@@ -319,7 +319,7 @@ export default {
     this.$store.dispatch('aboutme/getTablist', 'getTablist');
     this.$store.dispatch('aboutme/getEmailslist', 'getEmailslist');
     this.$store.dispatch('aboutme/getLocallist', 'getLocallist');
-    this.$store.dispatch('aboutme/getChannels', 'getChannels')
+    this.$store.dispatch('aboutme/getChannels', 'getChannels') 
   },
   computed: {
     renderlist () {//🌸7.8利用计算属性动态取tablist对象里面的三个数组
@@ -393,7 +393,6 @@ export default {
                 overflow: hidden;
                 //   背景图片
                 .card-front {
-                  // display: none;
                   cursor: pointer;
                   position: absolute;
                   width: 100%;

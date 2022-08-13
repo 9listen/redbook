@@ -9,9 +9,13 @@
         bgcolor="rgba(51,51,51,0.3)"
       />
       <div class="social-body">
-        <div class="social-content">
+        <div class="social-content"> 
           <!-- 每一个热点 -->
-          <div class="social-item" v-for="(item, index) in items" :key="index">
+          <div
+            class="social-item"
+            v-for="(item, index) in dutylist"
+            :key="index"
+          >
             <div class="img-wrapper">
               <img :src="item.src" alt="" />
             </div>
@@ -21,7 +25,23 @@
               <div class="time">{{ item.text.time }}</div>
             </div>
           </div>
-          <div class="pagination">11</div>
+          <!-- 分页器 -->
+          <div class="pagination">
+            <div class="block">
+              <el-pagination
+                layout=" prev, pager, next,total"
+                background
+                prev-text="上一页"
+                next-text="下一页"
+                :total="searchParams.total"
+                :page-size="searchParams.pageSize"
+                :current-page="searchParams.pageNo"
+                @current-change="handlePageChange"
+                @size-change="handleSizeChange"
+              >
+              </el-pagination>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -33,6 +53,7 @@
 import Header from '@/components/header.vue'
 import RedFooter from '@/components/redfooter.vue'
 import CommonTitle from '@/components/commontitle/commontitle.vue'
+import { mapGetters } from 'vuex'
 export default {
   name: 'aSocial',
   components: { Header, CommonTitle, RedFooter },
@@ -40,50 +61,43 @@ export default {
     return {
       title: '社会责任',
       banner: require('../../static/images/social01.jpeg'),
-      items: [
-        {
-          src: require('../../static/images/social02.png'),
-          text: {
-            title: '小红书联合中国扶贫基金会、真爱梦想基金会支持河南重建',
-            desc: '8月20日，小红书公布了向河南灾区捐款的最新进展。其中捐赠给中国扶贫基金会的600万元，用于支持灾后重建修复工作，帮助当地民众的生活早日恢复；向上海真爱梦想公益基金会捐赠的400万元，用于支持河南地区儿童安全及美育教育，助力更多灾区小朋友的梦想成真。目前两家基金会正在积极推动援助项目的落地实施。',
-            time: '2021-08-20 12:00'
-          }
-        },
-        {
-          src: require('../../static/images/social03.png'),
-          text: {
-            title: '小红书新一批援助物资运达武汉 已定向捐赠同济、协和等四家医院',
-            desc: '2月17日，继首批20万件物资运达武汉后，小红书的第二批援助物资也于日前运达武汉。这批9万件N95医用口罩已定向捐赠给同济医院中法新城院区、协和医院西院、武汉大学人民医院东院、同济医院光谷院区四家医院，用于新型冠状肺炎的疫情防疫工作。',
-            time: '2020-02-17 12:00'
-          }
-        },
-        {
-          src: require('../../static/images/social04.png'),
-          text: {
-            title: '小红书上线抗疫心理援助平台 逾千名咨询师提供免费心理咨询',
-            desc: '2月10日，小红书上线抗疫心理援助平台，为受疫情影响的一线医护人员、患者及有需求的普通公众提供7*24小时的免费心理咨询。小红书会将援助专题页定向推送给湖北地区用户，以帮助热线直达疫情严重地区。',
-            time: '2020-02-10 12:00'
-          }
-        },
-        {
-          src: require('../../static/images/social05.jpeg'),
-          text: {
-            title: '小红书出资1000万元用于新冠肺炎专项援助 支援武汉疫区',
-            desc: '1月31日，由小红书捐赠武汉疫区的首批20万件防护口罩已陆续到达武汉，相关物资已移交武汉东湖高新区防控指挥部，统一调度配给急需物资的医院及社区。同时，小红书在海外采购的包括欧标FFP2医用口罩在内的超过10万件医疗防疫物资，也已启程发往国内。',
-            time: '2020-02-01 12:00'
-          }
-        },
-        {
-          src: require('../../static/images/social06.jpeg'),
-          text: {
-            title: '小红书积极响应“争做中国好网民 上海网民在行动”网络举报宣传月活动',
-            desc: '9月10日上午，2019年上海市网络举报宣传月启动式暨网络举报志愿者培训开班仪式在上海报业大厦2楼报告厅举行，网络举报知识竞赛也同日上线。该活动由上海市委网信办指导，新民晚报新民网和上海互联网新闻研究中心（上海市互联网违法和不良信息举报中心）主办。这也是2019年上海市“争做中国好网民 上海网民在行动”有关“网络乱象我举报”活动的重要组成部分。',
-            time: '2019-9-10 12:00'
-          }
-        },
-      ]
+      // total: 8, //共多少条数据
+      searchParams: {
+        'pageNo': 1, //页码
+        'pageSize': 5,//每页默认展示5条数据,
+        "total":30
+      },
+      listData: [],
     }
-  }
+  },
+  /* 组件有页数和条数的事件。在这两个绑定事件中把值赋予你data里传给后端的pagesize和pagenumber。然后都触发调接口 */
+  methods: {
+    // 根据参数不同向服务器发请求返回不同的数据展示 ,把这次请求封装为函数，需要的时候调用即可
+    getData () {
+      this.$store.dispatch('social/getSearchlist', this.searchParams)//得到searchlist=result.data,
+    },
+    // 点击分页器的页数进行列表数据渲染
+    handlePageChange (cur) {
+      // 1.更新页数
+      console.log(cur);
+      this.searchParams.pageNo = cur
+      // 2.重新发请求
+      this.getData()
+    },
+    // 每页显示多少条数据
+    handleSizeChange (val) {
+      // 1.更新每页条数
+      this.searchParams.pageSize = val
+      console.log(val);
+      this.getData()
+    }
+  },
+  mounted () {
+    this.getData()
+  },
+  computed: {
+    ...mapGetters('social', ['dutylist'])
+  },
 }
 </script>
 
@@ -149,10 +163,41 @@ export default {
         }
         .pagination {
           width: 940px;
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
           margin-top: 12px;
+          /deep/ .block {
+            .el-pagination {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              .btn-prev,
+              .el-pager .number,
+              .btn-next {
+                height: 40px;
+                line-height: 40px;
+                margin-left: 15px;
+                font-size: 14px;
+                border-radius: 4px;
+                border: 1px solid #eee;
+                font-weight: 400;
+                span {
+                  line-height: 40px;
+                }
+              }
+              .btn-prev:hover,
+              .el-pager .number:hover,
+              .btn-next:hover {
+                color: #ff2442;
+                border-color: #ff2442;
+              }
+              .btn-prev,
+              .btn-next {
+                width: 76px;
+              }
+              .el-pager .number {
+                width: 40px;
+              }
+            }
+          }
         }
       }
     }
